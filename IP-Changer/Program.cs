@@ -1,4 +1,4 @@
-﻿// Program.cs
+// Program.cs
 //
 // Author:
 //       Victor M. Suarez <svmnotn@gmail.com>
@@ -37,9 +37,21 @@ namespace IPChanger
   public class Program
   {
     public static string[][] DefaultProperties = new string[5][];
-    public static string CompName;
     public static string NetName;
-    static string Location;
+    public static string CompName{
+      get{
+        return Environment.MachineName;
+      }
+    }
+    static string Location{
+      get{
+        var loc = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        if(loc.EndsWith("bin")) {
+          loc = loc.Remove(loc.Length - 4);
+        }
+        return loc + "\\prop.txt";
+      }
+    }
 
     public static void Main(string[] args)
     {
@@ -57,16 +69,13 @@ namespace IPChanger
       DefaultProperties[2] = new string[4];
       DefaultProperties[3] = new string[4];
       DefaultProperties[4] = new string[4];
-      Location = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\prop.txt";
-      CompName = Environment.MachineName;
       foreach(var nic in NetworkInterface.GetAllNetworkInterfaces()) {
         if(nic.OperationalStatus == OperationalStatus.Up) {
           NetName = nic.Name;
-          Load();
-          return;
+          break;
         }
       }
-
+      Load();
     }
 
     public static void Load()
