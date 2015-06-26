@@ -15,7 +15,7 @@ namespace IPChanger.UI
 			global::Stetic.Gui.Initialize (this);
 			// Widget IPChanger.UI.Sure
 			this.Name = "IPChanger.UI.Sure";
-			this.Title = global::Mono.Unix.Catalog.GetString ("Continue?");
+			this.Title = "Continue?";
 			this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-dialog-warning", global::Gtk.IconSize.Dialog);
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Resizable = false;
@@ -29,7 +29,7 @@ namespace IPChanger.UI
 			this.question.CanDefault = true;
 			this.question.Name = "question";
 			this.question.Xalign = 0F;
-			this.question.LabelProp = global::Mono.Unix.Catalog.GetString ("Test");
+			this.question.LabelProp = "Test";
 			this.question.UseMarkup = true;
 			this.question.Wrap = true;
 			this.question.Justify = ((global::Gtk.Justification)(3));

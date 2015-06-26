@@ -145,7 +145,7 @@ namespace IPChanger.UI
 			this.UIManager.InsertActionGroup (w1, 0);
 			this.AddAccelGroup (this.UIManager.AccelGroup);
 			this.Name = "IPChanger.UI.MainWindow";
-			this.Title = global::Mono.Unix.Catalog.GetString ("IP Changer");
+			this.Title = "IP Changer";
 			this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-preferences", global::Gtk.IconSize.Dialog);
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.BorderWidth = ((uint)(1));
@@ -174,7 +174,7 @@ namespace IPChanger.UI
 			this.NameInfo = new global::Gtk.Label ();
 			this.NameInfo.Name = "NameInfo";
 			this.NameInfo.Xalign = 0F;
-			this.NameInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("Machine Name:");
+			this.NameInfo.LabelProp = "Machine Name:";
 			this.NameHBox.Add (this.NameInfo);
 			global::Gtk.Box.BoxChild w3 = ((global::Gtk.Box.BoxChild)(this.NameHBox [this.NameInfo]));
 			w3.Position = 0;
@@ -184,7 +184,7 @@ namespace IPChanger.UI
 			this.MachineName = new global::Gtk.Label ();
 			this.MachineName.Name = "MachineName";
 			this.MachineName.Xalign = 1F;
-			this.MachineName.LabelProp = global::Mono.Unix.Catalog.GetString ("Name");
+			this.MachineName.LabelProp = "Name";
 			this.MachineName.Selectable = true;
 			this.NameHBox.Add (this.MachineName);
 			global::Gtk.Box.BoxChild w4 = ((global::Gtk.Box.BoxChild)(this.NameHBox [this.MachineName]));
@@ -202,7 +202,7 @@ namespace IPChanger.UI
 			this.NetworkInfo = new global::Gtk.Label ();
 			this.NetworkInfo.Name = "NetworkInfo";
 			this.NetworkInfo.Xalign = 0F;
-			this.NetworkInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("Network Adapter Name:");
+			this.NetworkInfo.LabelProp = "Network Adapter Name:";
 			this.NetworkHBox.Add (this.NetworkInfo);
 			global::Gtk.Box.BoxChild w6 = ((global::Gtk.Box.BoxChild)(this.NetworkHBox [this.NetworkInfo]));
 			w6.Position = 0;
@@ -212,7 +212,7 @@ namespace IPChanger.UI
 			this.NetworkName = new global::Gtk.Label ();
 			this.NetworkName.Name = "NetworkName";
 			this.NetworkName.Xalign = 1F;
-			this.NetworkName.LabelProp = global::Mono.Unix.Catalog.GetString ("Name");
+			this.NetworkName.LabelProp = "Name";
 			this.NetworkName.Selectable = true;
 			this.NetworkHBox.Add (this.NetworkName);
 			global::Gtk.Box.BoxChild w7 = ((global::Gtk.Box.BoxChild)(this.NetworkHBox [this.NetworkName]));
@@ -242,7 +242,7 @@ namespace IPChanger.UI
 			this.IPInfo = new global::Gtk.Label ();
 			this.IPInfo.Name = "IPInfo";
 			this.IPInfo.Xalign = 0F;
-			this.IPInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("IP:");
+			this.IPInfo.LabelProp = "IP:";
 			this.IPHBox.Add (this.IPInfo);
 			global::Gtk.Box.BoxChild w10 = ((global::Gtk.Box.BoxChild)(this.IPHBox [this.IPInfo]));
 			w10.Position = 0;
@@ -262,7 +262,7 @@ namespace IPChanger.UI
 			// Container child IPHBox.Gtk.Box+BoxChild
 			this.dot = new global::Gtk.Label ();
 			this.dot.Name = "dot";
-			this.dot.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot.LabelProp = ".";
 			this.IPHBox.Add (this.dot);
 			global::Gtk.Box.BoxChild w12 = ((global::Gtk.Box.BoxChild)(this.IPHBox [this.dot]));
 			w12.Position = 2;
@@ -284,7 +284,7 @@ namespace IPChanger.UI
 			// Container child IPHBox.Gtk.Box+BoxChild
 			this.dot1 = new global::Gtk.Label ();
 			this.dot1.Name = "dot1";
-			this.dot1.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot1.LabelProp = ".";
 			this.IPHBox.Add (this.dot1);
 			global::Gtk.Box.BoxChild w14 = ((global::Gtk.Box.BoxChild)(this.IPHBox [this.dot1]));
 			w14.Position = 4;
@@ -306,7 +306,7 @@ namespace IPChanger.UI
 			// Container child IPHBox.Gtk.Box+BoxChild
 			this.dot2 = new global::Gtk.Label ();
 			this.dot2.Name = "dot2";
-			this.dot2.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot2.LabelProp = ".";
 			this.IPHBox.Add (this.dot2);
 			global::Gtk.Box.BoxChild w16 = ((global::Gtk.Box.BoxChild)(this.IPHBox [this.dot2]));
 			w16.Position = 6;
@@ -338,7 +338,7 @@ namespace IPChanger.UI
 			this.DNS2Info = new global::Gtk.Label ();
 			this.DNS2Info.Name = "DNS2Info";
 			this.DNS2Info.Xalign = 0F;
-			this.DNS2Info.LabelProp = global::Mono.Unix.Catalog.GetString ("Alternate DNS Server:");
+			this.DNS2Info.LabelProp = "Alternate DNS Server:";
 			this.DNS2HBox.Add (this.DNS2Info);
 			global::Gtk.Box.BoxChild w19 = ((global::Gtk.Box.BoxChild)(this.DNS2HBox [this.DNS2Info]));
 			w19.Position = 0;
@@ -358,7 +358,7 @@ namespace IPChanger.UI
 			// Container child DNS2HBox.Gtk.Box+BoxChild
 			this.dot12 = new global::Gtk.Label ();
 			this.dot12.Name = "dot12";
-			this.dot12.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot12.LabelProp = ".";
 			this.DNS2HBox.Add (this.dot12);
 			global::Gtk.Box.BoxChild w21 = ((global::Gtk.Box.BoxChild)(this.DNS2HBox [this.dot12]));
 			w21.Position = 2;
@@ -380,7 +380,7 @@ namespace IPChanger.UI
 			// Container child DNS2HBox.Gtk.Box+BoxChild
 			this.dot13 = new global::Gtk.Label ();
 			this.dot13.Name = "dot13";
-			this.dot13.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot13.LabelProp = ".";
 			this.DNS2HBox.Add (this.dot13);
 			global::Gtk.Box.BoxChild w23 = ((global::Gtk.Box.BoxChild)(this.DNS2HBox [this.dot13]));
 			w23.Position = 4;
@@ -402,7 +402,7 @@ namespace IPChanger.UI
 			// Container child DNS2HBox.Gtk.Box+BoxChild
 			this.dot14 = new global::Gtk.Label ();
 			this.dot14.Name = "dot14";
-			this.dot14.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot14.LabelProp = ".";
 			this.DNS2HBox.Add (this.dot14);
 			global::Gtk.Box.BoxChild w25 = ((global::Gtk.Box.BoxChild)(this.DNS2HBox [this.dot14]));
 			w25.Position = 6;
@@ -435,7 +435,7 @@ namespace IPChanger.UI
 			this.DNS1Info = new global::Gtk.Label ();
 			this.DNS1Info.Name = "DNS1Info";
 			this.DNS1Info.Xalign = 0F;
-			this.DNS1Info.LabelProp = global::Mono.Unix.Catalog.GetString ("Preferred DNS Server:");
+			this.DNS1Info.LabelProp = "Preferred DNS Server:";
 			this.DNS1HBox1.Add (this.DNS1Info);
 			global::Gtk.Box.BoxChild w28 = ((global::Gtk.Box.BoxChild)(this.DNS1HBox1 [this.DNS1Info]));
 			w28.Position = 0;
@@ -455,7 +455,7 @@ namespace IPChanger.UI
 			// Container child DNS1HBox1.Gtk.Box+BoxChild
 			this.dot9 = new global::Gtk.Label ();
 			this.dot9.Name = "dot9";
-			this.dot9.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot9.LabelProp = ".";
 			this.DNS1HBox1.Add (this.dot9);
 			global::Gtk.Box.BoxChild w30 = ((global::Gtk.Box.BoxChild)(this.DNS1HBox1 [this.dot9]));
 			w30.Position = 2;
@@ -477,7 +477,7 @@ namespace IPChanger.UI
 			// Container child DNS1HBox1.Gtk.Box+BoxChild
 			this.dot10 = new global::Gtk.Label ();
 			this.dot10.Name = "dot10";
-			this.dot10.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot10.LabelProp = ".";
 			this.DNS1HBox1.Add (this.dot10);
 			global::Gtk.Box.BoxChild w32 = ((global::Gtk.Box.BoxChild)(this.DNS1HBox1 [this.dot10]));
 			w32.Position = 4;
@@ -499,7 +499,7 @@ namespace IPChanger.UI
 			// Container child DNS1HBox1.Gtk.Box+BoxChild
 			this.dot11 = new global::Gtk.Label ();
 			this.dot11.Name = "dot11";
-			this.dot11.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot11.LabelProp = ".";
 			this.DNS1HBox1.Add (this.dot11);
 			global::Gtk.Box.BoxChild w34 = ((global::Gtk.Box.BoxChild)(this.DNS1HBox1 [this.dot11]));
 			w34.Position = 6;
@@ -532,7 +532,7 @@ namespace IPChanger.UI
 			this.GateInfo = new global::Gtk.Label ();
 			this.GateInfo.Name = "GateInfo";
 			this.GateInfo.Xalign = 0F;
-			this.GateInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("Default Gateway:");
+			this.GateInfo.LabelProp = "Default Gateway:";
 			this.GateHBox.Add (this.GateInfo);
 			global::Gtk.Box.BoxChild w37 = ((global::Gtk.Box.BoxChild)(this.GateHBox [this.GateInfo]));
 			w37.Position = 0;
@@ -552,7 +552,7 @@ namespace IPChanger.UI
 			// Container child GateHBox.Gtk.Box+BoxChild
 			this.dot6 = new global::Gtk.Label ();
 			this.dot6.Name = "dot6";
-			this.dot6.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot6.LabelProp = ".";
 			this.GateHBox.Add (this.dot6);
 			global::Gtk.Box.BoxChild w39 = ((global::Gtk.Box.BoxChild)(this.GateHBox [this.dot6]));
 			w39.Position = 2;
@@ -574,7 +574,7 @@ namespace IPChanger.UI
 			// Container child GateHBox.Gtk.Box+BoxChild
 			this.dot7 = new global::Gtk.Label ();
 			this.dot7.Name = "dot7";
-			this.dot7.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot7.LabelProp = ".";
 			this.GateHBox.Add (this.dot7);
 			global::Gtk.Box.BoxChild w41 = ((global::Gtk.Box.BoxChild)(this.GateHBox [this.dot7]));
 			w41.Position = 4;
@@ -596,7 +596,7 @@ namespace IPChanger.UI
 			// Container child GateHBox.Gtk.Box+BoxChild
 			this.dot8 = new global::Gtk.Label ();
 			this.dot8.Name = "dot8";
-			this.dot8.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot8.LabelProp = ".";
 			this.GateHBox.Add (this.dot8);
 			global::Gtk.Box.BoxChild w43 = ((global::Gtk.Box.BoxChild)(this.GateHBox [this.dot8]));
 			w43.Position = 6;
@@ -629,7 +629,7 @@ namespace IPChanger.UI
 			this.MaskInfo = new global::Gtk.Label ();
 			this.MaskInfo.Name = "MaskInfo";
 			this.MaskInfo.Xalign = 0F;
-			this.MaskInfo.LabelProp = global::Mono.Unix.Catalog.GetString ("Subnet Mask:");
+			this.MaskInfo.LabelProp = "Subnet Mask:";
 			this.MaskHBox.Add (this.MaskInfo);
 			global::Gtk.Box.BoxChild w46 = ((global::Gtk.Box.BoxChild)(this.MaskHBox [this.MaskInfo]));
 			w46.Position = 0;
@@ -649,7 +649,7 @@ namespace IPChanger.UI
 			// Container child MaskHBox.Gtk.Box+BoxChild
 			this.dot3 = new global::Gtk.Label ();
 			this.dot3.Name = "dot3";
-			this.dot3.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot3.LabelProp = ".";
 			this.MaskHBox.Add (this.dot3);
 			global::Gtk.Box.BoxChild w48 = ((global::Gtk.Box.BoxChild)(this.MaskHBox [this.dot3]));
 			w48.Position = 2;
@@ -671,7 +671,7 @@ namespace IPChanger.UI
 			// Container child MaskHBox.Gtk.Box+BoxChild
 			this.dot4 = new global::Gtk.Label ();
 			this.dot4.Name = "dot4";
-			this.dot4.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot4.LabelProp = ".";
 			this.MaskHBox.Add (this.dot4);
 			global::Gtk.Box.BoxChild w50 = ((global::Gtk.Box.BoxChild)(this.MaskHBox [this.dot4]));
 			w50.Position = 4;
@@ -693,7 +693,7 @@ namespace IPChanger.UI
 			// Container child MaskHBox.Gtk.Box+BoxChild
 			this.dot5 = new global::Gtk.Label ();
 			this.dot5.Name = "dot5";
-			this.dot5.LabelProp = global::Mono.Unix.Catalog.GetString (".");
+			this.dot5.LabelProp = ".";
 			this.MaskHBox.Add (this.dot5);
 			global::Gtk.Box.BoxChild w52 = ((global::Gtk.Box.BoxChild)(this.MaskHBox [this.dot5]));
 			w52.Position = 6;
@@ -737,30 +737,29 @@ namespace IPChanger.UI
 			this.BttnHBox.Spacing = 6;
 			// Container child BttnHBox.Gtk.Box+BoxChild
 			this.DHCP = new global::Gtk.Button ();
-			global::Gtk.Tooltips w57 = new Gtk.Tooltips ();
-			w57.SetTip (this.DHCP, "Sets this computer to DHCP", "Sets this computer to DHCP");
+			this.DHCP.TooltipMarkup = "Sets this computer to DHCP";
 			this.DHCP.CanFocus = true;
 			this.DHCP.Name = "DHCP";
 			this.DHCP.UseUnderline = true;
-			this.DHCP.Label = global::Mono.Unix.Catalog.GetString ("Set DHCP");
+			this.DHCP.Label = "Set DHCP";
 			this.BttnHBox.Add (this.DHCP);
-			global::Gtk.Box.BoxChild w58 = ((global::Gtk.Box.BoxChild)(this.BttnHBox [this.DHCP]));
-			w58.Position = 0;
+			global::Gtk.Box.BoxChild w57 = ((global::Gtk.Box.BoxChild)(this.BttnHBox [this.DHCP]));
+			w57.Position = 0;
 			// Container child BttnHBox.Gtk.Box+BoxChild
 			this.Static = new global::Gtk.Button ();
-			w57.SetTip (this.Static, "Sets this computer to Static using the above settings", "Sets this computer to Static using the above settings");
+			this.Static.TooltipMarkup = "Sets this computer to Static using the above settings";
 			this.Static.CanFocus = true;
 			this.Static.Name = "Static";
 			this.Static.UseUnderline = true;
-			this.Static.Label = global::Mono.Unix.Catalog.GetString ("Set Static");
+			this.Static.Label = "Set Static";
 			this.BttnHBox.Add (this.Static);
-			global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.BttnHBox [this.Static]));
-			w59.Position = 1;
+			global::Gtk.Box.BoxChild w58 = ((global::Gtk.Box.BoxChild)(this.BttnHBox [this.Static]));
+			w58.Position = 1;
 			this.MainVBox.Add (this.BttnHBox);
-			global::Gtk.Box.BoxChild w60 = ((global::Gtk.Box.BoxChild)(this.MainVBox [this.BttnHBox]));
-			w60.Position = 6;
-			w60.Expand = false;
-			w60.Fill = false;
+			global::Gtk.Box.BoxChild w59 = ((global::Gtk.Box.BoxChild)(this.MainVBox [this.BttnHBox]));
+			w59.Position = 6;
+			w59.Expand = false;
+			w59.Fill = false;
 			this.Add (this.MainVBox);
 			if ((this.Child != null)) {
 				this.Child.ShowAll ();

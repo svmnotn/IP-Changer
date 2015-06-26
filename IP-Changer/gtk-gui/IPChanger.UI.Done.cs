@@ -13,7 +13,7 @@ namespace IPChanger.UI
 			global::Stetic.Gui.Initialize (this);
 			// Widget IPChanger.UI.Done
 			this.Name = "IPChanger.UI.Done";
-			this.Title = global::Mono.Unix.Catalog.GetString ("Operation Compleated");
+			this.Title = "Operation Compleated";
 			this.Icon = global::Stetic.IconLoader.LoadIcon (this, "gtk-dialog-info", global::Gtk.IconSize.Dialog);
 			this.WindowPosition = ((global::Gtk.WindowPosition)(4));
 			this.Resizable = false;
@@ -26,7 +26,7 @@ namespace IPChanger.UI
 			// Container child dialog1_VBox.Gtk.Box+BoxChild
 			this.message = new global::Gtk.Label ();
 			this.message.Name = "message";
-			this.message.LabelProp = global::Mono.Unix.Catalog.GetString ("label1");
+			this.message.LabelProp = "label1";
 			w1.Add (this.message);
 			global::Gtk.Box.BoxChild w2 = ((global::Gtk.Box.BoxChild)(w1 [this.message]));
 			w2.Position = 0;
