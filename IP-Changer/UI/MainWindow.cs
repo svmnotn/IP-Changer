@@ -1,104 +1,88 @@
-﻿// MainWindow.cs
+﻿//The MIT License (MIT)
 //
-// Author:
-//       Victor M. Suarez <svmnotn@gmail.com>
+//Copyright (c) 2015 Victor M. Suarez
 //
-// Copyright (c) 2015 Victor M. Suarez
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
 //
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-using Gtk;
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
 using System;
+using System.Windows.Forms;
 using System.Net.NetworkInformation;
-using IPChanger;
 
-namespace IPChanger.UI
-{
-  public partial class MainWindow: Window
-  {
-    public MainWindow() : base(WindowType.Toplevel)
-    {
-      Build();
-      SetDefaults();
+namespace IPChanger.UI {
+
+  public partial class MainWindow : Form {
+
+    public MainWindow() {
+      InitializeComponent();
+      MachineName.Text = Program.CompName;
+      foreach(var nic in NetworkInterface.GetAllNetworkInterfaces()) {
+        NetAdapter.Items.Add(nic.Name);
+      }
+      NetAdapter.SelectedIndex = NetAdapter.FindString(Program.NetName);
+      LoadData();
     }
 
-    void SetDefaults()
-    {
-      MachineName.LabelProp = Program.CompName;
-      NetworkName.LabelProp = Program.NetName;
-      //Loop over all children, each child should be 1 to 1 to the default properties
-      for(int i = 0; i < PropertyVBox.Children.Length; i++) {
-        HBox prop = (HBox)PropertyVBox.Children[i];
-        int j = 0;
-        foreach(var child in prop.Children) {
-          //For each child that is an Entry check if it needs to be changed
-          if(child is Entry && j < 4) {
-            Entry c = (Entry)child;
-            var tmp = Program.DefaultProperties[i][j];
-            if(!tmp.Contains("x")) {
-              c.Text = tmp;
-              c.IsEditable = false;
-              c.CanFocus = false;
-              c.HasFrame = false;
-            } else {
-              c.Text = "";
-              c.IsEditable = true;
-              c.CanFocus = true;
-              c.HasFrame = true;
+    void LoadData() {
+      foreach(Control table in DataTable.Controls) {
+        if(!table.Name.Contains("Info")) {
+          foreach(Control child in table.Controls) {
+            if(!child.Name.Contains("dot")) {
+              TextBox txt = (TextBox)child;
+              var tmp = Program.DefaultProperties[GetPropertyIndex(txt.Name)][GetIndex(txt.Name)];
+              if(tmp.Contains("x")) {
+                txt.Text = "";
+                txt.Enabled = true;
+              } else {
+                txt.Text = tmp;
+                txt.Enabled = false;
+              }
             }
-            j++;
-          } else if(j == 4) {
-            j = 0;
           }
         }
       }
     }
 
-    string ChangeText(int i, int j, string text)
-    {
+    string ValidateText(string txt) {
       var tmp = "x";
-      if(text.Length > 0) {
-        tmp = text;
-        foreach(var c in text.ToCharArray()) {
+      if(txt.Length > 0) {
+        tmp = txt;
+        foreach(var c in txt.ToCharArray()) {
           if(!Char.IsDigit(c)) {
             tmp = "x";
             break;
           }
         }
       }
-      Program.DefaultProperties[i][j] = tmp;
+      return tmp;
+    }
+
+    string SaveChangeText(int propertyIndex, int index, string text) {
+      var tmp = ValidateText(text);
+      Console.WriteLine("Data to be saved: " + tmp);
+      Program.DefaultProperties[propertyIndex][index] = tmp;
       return tmp == "x" ? "" : tmp;
     }
 
-    #region EventHandlers
-
-    protected void OnEntryChanged(object sender, EventArgs args)
-    {
-      Entry e = (Entry)sender;
-      var name = e.Name;
+    int GetPropertyIndex(string name) {
       int i = 0;
-      int j = 0;
-      if(Char.IsDigit(name.ToCharArray()[name.Length - 1])) {
-        j = Convert.ToInt32(name.ToCharArray()[name.Length - 1] + "");
-        name = name.Remove(name.Length - 1);
-      }
+      name = name.Remove(name.Length - 1);
       name = name.ToUpper();
-      var names = Enum.GetNames(typeof(Properties));
+      var names = Enum.GetNames(typeof(IPProperties));
       for(; i < names.Length;) {
         if(names[i] == name) {
           break;
@@ -106,55 +90,41 @@ namespace IPChanger.UI
           i++;
         }
       }
-      e.Text = ChangeText(i, j, e.Text);
+      return i;
     }
 
-    protected void OnDHCPClicked(object sender, EventArgs e)
-    {
-      ConsoleHandler.SetDHCP();
-      var msg = new Done("Computer set to DHCP");
-      msg.Run();
-      msg.Destroy();
-      Application.Quit();
+    int GetIndex(string name) {
+      return Convert.ToInt32(name.ToCharArray()[name.Length - 1] + "") - 1;
     }
 
-    protected void OnStaticClicked(object sender, EventArgs e)
-    {
-      ConsoleHandler.SetStatic();
-      var msg = new Done("Computer set to Static");
-      msg.Run();
-      msg.Destroy();
-      OnDeleteEvent(null, new DeleteEventArgs());
+    #region EventHandlers
+
+    protected void OnTextChanged(object sender, EventArgs args) {
+      TextBox e = (TextBox)sender;
+      e.Text = SaveChangeText(GetPropertyIndex(e.Name), GetIndex(e.Name), e.Text);
     }
 
-    protected void OnNew(object sender, EventArgs e)
-    {
-      Sure s = new Sure("This will replace the current file with a new one, do you whish to continue?");
-      if(s.Run() == (int)ResponseType.Yes) {
-        Program.Reset();
-        SetDefaults();
-      }
-      s.Destroy();
-    }
-
-    protected void OnSave(object sender, EventArgs e)
-    {
+    private void OnSaveCurrent(object sender, EventArgs e) {
       Program.Save();
-      SetDefaults();
+      LoadData();
     }
 
-    protected void OnLoad(object sender, EventArgs e)
-    {
-      Program.Load();
-      SetDefaults();
+    private void OnTrashCurrent(object sender, EventArgs e) {
+      Program.Reset();
+      LoadData();
     }
 
-    protected void OnDeleteEvent(object sender, DeleteEventArgs a)
-    {
-      Application.Quit();
-      a.RetVal = true;
+    private void OnAdapterChange(object sender, EventArgs e) {
+      Program.NetName = NetAdapter.SelectedItem.ToString();
     }
 
+    private void OnDHCPClick(object sender, EventArgs e) {
+      new LogerWindow(ConsoleHandler.GetDHCP()).Show();
+    }
+
+    private void OnStaticClick(object sender, EventArgs e) {
+      new LogerWindow(ConsoleHandler.GetStatic()).Show();
+    }
     #endregion
   }
 }

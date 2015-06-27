@@ -1,69 +1,56 @@
-// Program.cs
+﻿//The MIT License (MIT)
 //
-// Author:
-//       Victor M. Suarez <svmnotn@gmail.com>
+//Copyright (c) 2015 Victor M. Suarez
 //
-// Copyright (c) 2015 Victor M. Suarez
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
 //
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
 //
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-using Gtk;
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
 using System;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
 using System.Net.NetworkInformation;
-using System.Runtime.CompilerServices;
-using System.Security.Permissions;
 
-namespace IPChanger
-{
+namespace IPChanger {
   using UI;
 
-  public class Program
-  {
+  public static class Program {
+
     public static string[][] DefaultProperties = new string[5][];
     public static string NetName;
-    public static string CompName{
-      get{
-        return Environment.MachineName;
-      }
-    }
-    static string Location{
-      get{
-        var loc = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        if(loc.EndsWith("bin")) {
-          loc = loc.Remove(loc.Length - 4);
-        }
-        return loc + "\\prop.txt";
+    public static string CompName { get { return Environment.MachineName; } }
+    public static string Location {
+      get {
+        return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\prop.txt";
       }
     }
 
-    public static void Main(string[] args)
-    {
+    /// <summary>
+    /// The main entry point for the application.
+    /// </summary>
+    [STAThread]
+    static void Main() {
       Setup();
-      Application.Init();
-      MainWindow win = new MainWindow();
-      win.Show();
-      Application.Run();
+      Application.EnableVisualStyles();
+      Application.SetCompatibleTextRenderingDefault(false);
+      Application.Run(new MainWindow());
     }
 
-    static void Setup()
-    {
+    static void Setup() {
       DefaultProperties[0] = new string[4];
       DefaultProperties[1] = new string[4];
       DefaultProperties[2] = new string[4];
@@ -78,8 +65,7 @@ namespace IPChanger
       Load();
     }
 
-    public static void Load()
-    {
+    public static void Load() {
       if(File.Exists(Location)) {
         Console.WriteLine("Loading");
         string[] lines = File.ReadAllLines(Location);
@@ -89,19 +75,19 @@ namespace IPChanger
             var subParts = parts[1].Split('.');
             switch(parts[0]) {
               case "IP":
-                SetSubArray(DefaultProperties[(int)Properties.IP], subParts);
+                SetSubArray(DefaultProperties[(int)IPProperties.IP], subParts);
                 break;
               case "MASK":
-                SetSubArray(DefaultProperties[(int)Properties.MASK], subParts);
+                SetSubArray(DefaultProperties[(int)IPProperties.MASK], subParts);
                 break;
               case "GATE":
-                SetSubArray(DefaultProperties[(int)Properties.GATE], subParts);
+                SetSubArray(DefaultProperties[(int)IPProperties.GATE], subParts);
                 break;
               case "DNS1":
-                SetSubArray(DefaultProperties[(int)Properties.DNS1], subParts);
+                SetSubArray(DefaultProperties[(int)IPProperties.DNS1], subParts);
                 break;
               case "DNS2":
-                SetSubArray(DefaultProperties[(int)Properties.DNS2], subParts);
+                SetSubArray(DefaultProperties[(int)IPProperties.DNS2], subParts);
                 break;
             }
           }
@@ -111,27 +97,24 @@ namespace IPChanger
       }
     }
 
-    static void SetSubArray(string[] arr, string[] subarr)
-    {
+    static void SetSubArray(string[] arr, string[] subarr) {
       for(int i = 0; i < arr.Length; i++) {
         arr[i] = subarr[i];
       }
     }
 
-    public static void Save()
-    {
+    public static void Save() {
       Console.WriteLine("Saving");
-      string[] def = {("IP=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)Properties.IP])),
-        ("MASK=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)Properties.MASK])),
-        ("GATE=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)Properties.GATE])),
-        ("DNS1=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)Properties.DNS1])),
-        ("DNS2=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)Properties.DNS2]))
+      string[] def = {("IP=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)IPProperties.IP])),
+        ("MASK=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)IPProperties.MASK])),
+        ("GATE=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)IPProperties.GATE])),
+        ("DNS1=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)IPProperties.DNS1])),
+        ("DNS2=" + ConsoleHandler.ArrayToString(DefaultProperties[(int)IPProperties.DNS2]))
       };
       File.WriteAllLines(Location, def);
     }
 
-    public static void Reset()
-    {
+    public static void Reset() {
       for(int i = 0; i < 5; i++) {
         for(int j = 0; j < 4; j++) {
           DefaultProperties[i][j] = "x";
